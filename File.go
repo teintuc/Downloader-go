@@ -33,7 +33,7 @@ func (pt *PassThru) Read(p []byte) (int, error) {
 	return n, err
 }
 
-func DownloadFile(url string, filename string) (err error) {
+func File(url string, filename string) (err error) {
 	/* Create a GET resousrce to download the content */
 	response, err := NewGetClient(url)
 	if err != nil {
