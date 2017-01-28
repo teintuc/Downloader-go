@@ -3,6 +3,7 @@ package downloader
 import (
 	"fmt"
 	"io"
+	"net/http"
 	"os"
 	"strconv"
 	"strings"
@@ -13,6 +14,20 @@ type PassThru struct {
 	total         int64
 	contentLength int64
 	printProgress bool
+}
+
+func NewGetClient(url string) (response *http.Response, err error) {
+	client := &http.Client{}
+	request, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+	response, err = client.Do(request)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return response, err
 }
 
 func progress(current, total, bar_size int) {
