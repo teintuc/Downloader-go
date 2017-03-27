@@ -32,10 +32,10 @@ func NewGetClient(url string) (response *http.Response, err error) {
 
 func progress(current, total, bar_size int) {
 	amount := int(float32(current) / (float32(total) / float32(bar_size)))
-	remain := bar_size - amount
+	remain := bar_size - amount - 1
 	progress := (current * 100) / total
 
-	bar := " [" + strings.Repeat("=", amount) + strings.Repeat(" ", remain) + "] " + strconv.Itoa(current) + " " + strconv.Itoa(progress) + "%"
+	bar := " [" + strings.Repeat("=", amount) + ">" +strings.Repeat(" ", remain) + "] " + strconv.Itoa(current) + " " + strconv.Itoa(progress) + "%"
 	fmt.Println(bar)
 }
 
